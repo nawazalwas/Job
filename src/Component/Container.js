@@ -2,7 +2,6 @@ import React from 'react';
 import './Container.css'
 
 function Container({ data ,handler}) {
-    console.log(data?.show)
     return (
         <div className='container' onClick={()=>{handler(data)}}>
             <img className='container_image' src={(data?.show?.image?.medium)

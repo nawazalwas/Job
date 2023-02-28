@@ -3,14 +3,19 @@ import './Details.css';
 
 
 function Details({ data }) {
-    console.log(data?.show);
     return (
         <div className='details'>
             <section className='details_row'>
                 <section className='details_row_left_section'>
                     <aside className='details_row_left_section_aside'>
                         <figure className='details_row_left_section_aside_figure'>
-                            <img className='details_row_left_section_aside_figure_image' src={data?.show?.image?.medium} />
+                            <img
+                                className='details_row_left_section_aside_figure_image'
+                                src={(data?.show?.image?.medium)
+                                    ? data?.show?.image?.medium
+                                    : "https://www.shutterstock.com/image-vector/movie-film-abstract-modern-poster-260nw-1055142515.jpg"}
+
+                            />
                         </figure>
                         <div className='details_row_left_section_aside_bottom'>
                             <span className='details_row_left_section_aside_bottom_follow'>
@@ -22,11 +27,15 @@ function Details({ data }) {
                     </aside>
                     <div className='details_row_left_section_container'>
                         <article className='details_row_left_section_container_article'>
-                            <p className='details_row_left_section_container_article_para'>
+                            <div className='details_row_left_section_container_article_para'>
                                 <b className='details_row_left_section_container_article_para_header'>{data?.show?.name}</b>
-                                <div className='details_row_left_section_container_article_para_containt' dangerouslySetInnerHTML={{ __html: data?.show?.summary }}></div>
+                                <p 
+                                className='details_row_left_section_container_article_para_containt' 
+                                dangerouslySetInnerHTML={{ __html: data?.show?.summary }}>
+                                    
+                                </p>
 
-                            </p>
+                            </div>
                         </article>
                         <div className='details_row_left_section_container_socialContainer'>
                             <div className="details_row_left_section_container_socialContainer_buttons">
@@ -103,7 +112,7 @@ function Details({ data }) {
                                     {Array(data?.show?.rating?.average && Math.floor(data?.show?.rating?.average))
                                         .fill(-1)
                                         .map((_, id) => {
-                                            return <i className="fa fa-star" aria-hidden="true"></i>
+                                            return <i key={id + "_active"} className="fa fa-star" aria-hidden="true"></i>
                                         })
 
                                     }
@@ -111,7 +120,7 @@ function Details({ data }) {
                                         Array(data?.show?.rating?.average && Math.floor(10 - data?.show?.rating?.average))
                                             .fill(-1)
                                             .map((_, id) => {
-                                                return <i className="fa fa-star" aria-hidden="true" style={{ color: "white" }}></i>
+                                                return <i key={id + "_deactive"} className="fa fa-star" aria-hidden="true" style={{ color: "white" }}></i>
                                             })
                                     }
                                 </span>
@@ -121,15 +130,15 @@ function Details({ data }) {
                         </p>
                     </section>
                 </section>
-                
+
             </section>
             <div className='details_home_page'>
-                <a href='#' >
-                   <button>Home</button>
+                <a href='https://harmonious-blancmange-b74ae8.netlify.app/' >
+                    <button>Home</button>
                 </a>
-                
+
             </div>
-            
+
         </div>
     )
 }

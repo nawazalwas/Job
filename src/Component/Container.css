@@ -12,6 +12,7 @@
     border-radius: 4px;
     transition: 1s all;
     width: 200px;
+    height: 350px;
 
 }
 .container:hover {
